@@ -5,6 +5,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
@@ -33,8 +34,9 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
         mainContent = (CoordinatorLayout) findViewById(R.id.main_content);
         appbar = (AppBarLayout) findViewById(R.id.appbar);
-        toolBar = (Toolbar) findViewById(R.id.toolBar);//
+        toolBar = (Toolbar) findViewById(R.id.toolBar);
         webview = (WebView) findViewById(R.id.webview);
+
 
     }
 
@@ -53,13 +55,18 @@ public class MainActivity extends AppCompatActivity {
         //设置WebView属性,运行执行js脚本
         webview.getSettings().setJavaScriptEnabled(true);
         //调用loadView方法为WebView加入链接
-        webview.loadUrl("http://blog.csdn.net/y1258429182");
+        webview.loadUrl("http://blog.csdn.net/y1258429182/article/details/50876736");
     }
 
+    public void share(View view) {
+        Toast.makeText(MainActivity.this, "分享", Toast.LENGTH_SHORT).show();
+    }
 
-    // 我们需要重写回退按钮的时间,当用户点击回退按钮：
-    //1.webView.canGoBack()判断网页是否能后退,可以则goback()
-    //2.如果不可以连续点击两次退出App,否则弹出提示Toast
+    /**
+     * 我们需要重写回退按钮的时间,当用户点击回退按钮：
+     * 1.webView.canGoBack()判断网页是否能后退,可以则goback()
+     * 2.如果不可以连续点击两次退出App,否则弹出提示Toast
+     */
     @Override
     public void onBackPressed() {
         if (webview.canGoBack()) {
